@@ -1,13 +1,7 @@
-import { handleAuth, handleResponse, handleRequest, handleError, message } from './tools';
+import { handleResponse, handleError } from './tools';
 import { request } from '@ytton/tools';
 export const http = request.create({
-  baseURL: 'http://localhost:3000',
-  needAuth: true,
-  needMessage: false,
-  message,
-  returnType: 'withError',
-  handleAuth,
+  baseURL: 'http://codercba.com:1888/airbnb/api/',
   handleResponse,
-  handleRequest,
   handleError
 });

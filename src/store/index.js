@@ -6,3 +6,5 @@ export const store = configureStore({
     home: homeReducer
   }
 });
+
+export * from './modules/home'

@@ -1,6 +1,18 @@
-@import url(./index.less);
-@primaryTextColor: red;
-
-main {
-  color: @primaryTextColor;
+@import url(./reset.less);
+body {
+  width: 100%;
+}
+.two-ellipsis {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+.primary-tag {
+  padding: 1px 4px;
+  background-color: #006a70;
+  color: #fff;
+  font-size: 12px;
+  border-radius: 4px;
 }

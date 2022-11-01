@@ -1,24 +1,58 @@
 import React, { memo } from 'react';
-import { useEffect } from 'react';
-import { shallowEqual, useSelector } from 'react-redux';
-import { getUsers, getUsers2 } from '../../services/modules/test';
+import { isEmpty } from '@/utils';
+import HomeBanner from './components/homeBanner';
+import HomeSection from './components/homeSection';
+import { useInitData } from './hooks';
+import { HomeWrapper } from './style';
+import LongForSection from './components/longForSection';
 
 const Home = memo(() => {
-  useEffect(() => {
-    (async () => {
-      const [err, users] = await getUsers();
-      const [err2, users2] = await getUsers2();
-      if (err || err2) return;
-      console.log(users);
-      console.log(users2);
-    })();
-  }, []);
-  const { count } = useSelector(
-    state => ({
-      count: state.home.count
-    }),
-    shallowEqual
+  const { goodPriceRoomInfo, hotRoomInfo, discountRoomInfo, longForCityInfo, highScoreRoomInfo } = useInitData();
+  return (
+    <HomeWrapper>
+      <HomeBanner />
+      <div className="content">
+        {!isEmpty(hotRoomInfo) && (
+          <HomeSection
+            titleInfo={{ title: hotRoomInfo.title }}
+            roomItemWidth="33.33%"
+            tabs={hotRoomInfo.dest_address ?? []}
+            roomList={hotRoomInfo.dest_list ?? []}
+            footerInfo={{}}
+          />
+        )}
+        {!isEmpty(discountRoomInfo) && (
+          <HomeSection
+            titleInfo={{ title: discountRoomInfo.title, subTitle: discountRoomInfo.subtitle }}
+            roomItemWidth="33.33%"
+            tabs={discountRoomInfo.dest_address ?? []}
+            roomList={discountRoomInfo.dest_list ?? []}
+            footerInfo={{}}
+          />
+        )}
+        {!isEmpty(longForCityInfo) && (
+          <LongForSection
+            titleInfo={{ title: longForCityInfo.title, subTitle: longForCityInfo.subtitle }}
+            list={longForCityInfo.list ?? []}
+          />
+        )}
+        {!isEmpty(goodPriceRoomInfo) && (
+          <HomeSection
+            titleInfo={{ title: goodPriceRoomInfo.title }}
+            roomList={goodPriceRoomInfo.list ?? []}
+            footerInfo={{}}
+          />
+        )}
+        {!isEmpty(highScoreRoomInfo) && (
+          <HomeSection
+            titleInfo={{ title: highScoreRoomInfo.title, subTitle: highScoreRoomInfo.subtitle }}
+            roomItemWidth="25%"
+            roomList={highScoreRoomInfo.list ?? []}
+            footerInfo={{}}
+          />
+        )}
+      </div>
+    </HomeWrapper>
   );
-  return <div>Home:{count}</div>;
 });
 export default Home;
