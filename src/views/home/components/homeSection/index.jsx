@@ -9,7 +9,7 @@ import Tabs from '@/components/tabs';
 import { useCallback } from 'react';
 
 const HomeSection = memo(props => {
-  const { titleInfo, roomList, tabs, roomItemWidth, footerInfo } = props;
+  const { titleInfo, roomList, tabs, roomItemWidth } = props;
   const [tab, setTab] = useState(tabs?.[0]?.name);
   const change = useCallback(v => setTab(v), []);
   let list = roomList;
@@ -24,7 +24,7 @@ const HomeSection = memo(props => {
         ))}
       </div>
       <div className="section-footer">
-        <HomeSectionFooter name={tab} />
+        <HomeSectionFooter name={tab} to="/entire"/>
       </div>
     </HomeSectionWrapper>
   );

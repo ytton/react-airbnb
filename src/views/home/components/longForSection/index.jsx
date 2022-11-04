@@ -3,16 +3,18 @@ import React, { memo } from 'react';
 import SectionTitle from '@/components/sectionTitle';
 import LongForSectionWrapper from './style';
 import LongForItem from '@/components/longForItem';
-
+import ScrollView from '@/components/scrollView';
 const LongForSection = memo(props => {
   const { titleInfo, list } = props;
   return (
     <LongForSectionWrapper>
       <SectionTitle title={titleInfo.title} subTitle={titleInfo.subTitle} />
       <div className="list">
-        {list.map(item => (
-          <LongForItem key={item.city} data={item} />
-        ))}
+        <ScrollView>
+          {list.map(item => (
+            <LongForItem key={item.city} data={item} />
+          ))}
+        </ScrollView>
       </div>
       <div className="section-footer">
         <div className="footer-title">

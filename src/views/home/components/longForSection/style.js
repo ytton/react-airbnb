@@ -4,8 +4,6 @@ const LongForSectionWrapper = styled.div`
   & {
     margin-bottom: 30px;
     .list {
-      display: flex;
-      flex-wrap: nowrap;
       margin: 0 -8px;
     }
     .section-footer {

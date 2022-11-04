@@ -2,9 +2,9 @@ import React from 'react';
 import { FooterWrapper } from './style';
 import { links } from '@/assets/constants/links';
 import IconLogoSmall from '@/assets/svg/icon_logo_small';
-export default function AppFooter() {
+export default function AppFooter(props) {
   return (
-    <FooterWrapper>
+    <FooterWrapper {...props}>
       <div className="content">
         <div className="top">
           {links.map((linkSection, ind) => (

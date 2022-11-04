@@ -1,9 +1,16 @@
-import React, { memo } from 'react'
+import React, { memo, useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { changeShowFooterAction } from '../../store/modules/global';
 
 const Entire = memo(() => {
-  return (
-    <div>Entire</div>
-  )
-})
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(changeShowFooterAction(false));
+    return () => {
+      dispatch(changeShowFooterAction(true));
+    };
+  }, [dispatch]);
+  return <div>Entire</div>;
+});
 
-export default Entire
+export default Entire;

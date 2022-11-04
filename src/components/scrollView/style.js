@@ -7,9 +7,11 @@ const ScrollViewWrapper = styled.div`
       overflow: hidden;
     }
     .content {
+      position: relative;
       display: flex;
       flex-wrap: nowrap;
-      transform: translateX(-100px);
+      transition: 200ms ease;
+      transform: translateX(${props => -1 * props.offsetX}px);
     }
     .btn-wrapper {
       width: 40px;
@@ -18,6 +20,7 @@ const ScrollViewWrapper = styled.div`
       display: flex;
       align-items: center;
       height: 100%;
+      transition: 200ms ease;
 
       &.left {
         left: -10px;
