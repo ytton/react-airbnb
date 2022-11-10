@@ -5,14 +5,15 @@ import AppFooter from './app-footer';
 import AppHeader from './app-header';
 import { LayoutWrapper } from './style';
 export default function Layout() {
-  const { showFooter } = useSelector(
+  const { showFooter, fixedHeader } = useSelector(
     state => ({
-      showFooter: state.global.showFooter
+      showFooter: state.global.showFooter,
+      fixedHeader: state.global.fixedHeader
     }),
     shallowEqual
   );
   return (
-    <LayoutWrapper>
+    <LayoutWrapper showFooter={showFooter} fixedHeader={fixedHeader}>
       <main>
         <AppHeader></AppHeader>
         <Outlet />

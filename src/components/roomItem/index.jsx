@@ -35,7 +35,8 @@ const RoomItem = memo(props => {
 });
 
 RoomItem.propTypes = {
-  data: PropTypes.object.isRequired
+  data: PropTypes.object.isRequired,
+  width: PropTypes.string
 };
 
 export default RoomItem;
