@@ -4,29 +4,14 @@ import PropTypes from 'prop-types';
 import { Avatar, Rating } from '@mui/material';
 import FavoriteTwoToneIcon from '@mui/icons-material/FavoriteTwoTone';
 import Slider from 'react-slick';
-import { useRef } from 'react';
-import { useState } from 'react';
+import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
+import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
+import Indicator from '../../base-ui/indicator';
+import classNames from 'classnames';
+import { useIndicatorDot } from '../../hooks/useIndicatorDot';
 const EntireItem = memo(props => {
   const { data, width } = props;
-  const sliderRef = useRef();
-  const settings = {
-    dots: false,
-    infinite: true,
-    adaptiveHeight: true,
-    speed: 500,
-    arrow: false,
-    slidesToShow: 1,
-    slidesToScroll: 1
-  };
-  const [index, setIndex] = useState(0);
-
-  const changeIndex = i => {
-    //动态改变Indicator
-    i = i < 0 ? data.picture_urls.length - 1 : i;
-    i = i >= data.picture_urls.length ? 0 : i;
-    sliderRef.current.slickGoTo(i);
-    setIndex(i);
-  };
+  const { settings, sliderRef, changeIndex, index } = useIndicatorDot(data.picture_urls.length);
 
   return (
     <EntireItemWrapper
@@ -41,12 +26,29 @@ const EntireItem = memo(props => {
           ))}
         </Slider>
         <div className="next btn" onClick={() => changeIndex(index + 1)}>
-          next
+          <ArrowForwardIosIcon className="icon" />
         </div>
         <div className="prev btn" onClick={() => changeIndex(index - 1)}>
-          prev
+          <ArrowBackIosIcon className="icon" />
         </div>
-        <div className="indicator"></div>
+        <div
+          className={classNames('indicator', {
+            scale: data.picture_urls.length >= 7
+          })}
+        >
+          <Indicator index={index} maxNumber={7}>
+            {data.picture_urls.map((img, i) => (
+              <span
+                key={img}
+                className={classNames('dot', { active: i === index }, [
+                  index >= 1 && index <= data.picture_urls.length - 1 && i >= index - 6 && i < index
+                    ? `prev-${index - i}`
+                    : ''
+                ])}
+              ></span>
+            ))}
+          </Indicator>
+        </div>
         <div className="new">NEW</div>
         <div className="love">
           <FavoriteTwoToneIcon sx={{ color: '#fff', fontSize: '24px' }} />

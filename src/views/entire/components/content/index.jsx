@@ -18,8 +18,8 @@ const EntireContent = memo(() => {
   );
   return (
     <EntireContentWrapper showMap={showMap}>
-      <div className="title">{total}多处住宿</div>
       <div className="content">
+      <div className="title">{total}多处住宿</div>
         <div className="list">
           {entireList.map(room => (
             <Fragment key={room.id}>

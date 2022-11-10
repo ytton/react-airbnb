@@ -1,17 +1,22 @@
 import { Rating } from '@mui/material';
 import PropTypes from 'prop-types';
 import React, { memo } from 'react';
+import { useNavigate } from 'react-router-dom';
 import RoomItemWrapper from './style';
 
 const RoomItem = memo(props => {
   const { data, width } = props;
+  const navigate = useNavigate();
+  const goDetail = () => {
+    navigate('/detail/' + data.id);
+  };
   return (
     <RoomItemWrapper
       roomInfoColor={data.verify_info?.text_color}
       width={width}
       rateColor={data.bottom_info?.content_color}
     >
-      <div className="linked">
+      <div className="linked" onClick={goDetail}>
         <div className="cover">
           <img src={data.picture_url} alt="cover" />
         </div>

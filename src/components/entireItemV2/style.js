@@ -6,8 +6,7 @@ const EntireItemV2Wrapper = styled.div`
     height: 200px;
     width: 100%;
     border: 1px solid ${({ theme }) => theme.color.borderColor};
-    margin: 8px;
-    margin-bottom: 12px;
+    margin: 9px 0;
     cursor: pointer;
     &:hover {
       ${({ theme }) => theme.mixin.boxShadow};
@@ -16,16 +15,120 @@ const EntireItemV2Wrapper = styled.div`
       width: 300px;
       flex-shrink: 0;
       position: relative;
-      background-color: red;
       border-radius: 3px;
       overflow: hidden;
-      img {
+      aspect-ratio: 353/234;
+      cursor: pointer;
+      &:hover {
+        .btn {
+          .icon {
+            display: inline-block;
+          }
+          &.next {
+            background: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.6));
+          }
+          &.prev {
+            background: linear-gradient(to left, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.6));
+          }
+        }
+      }
+      .slider {
         position: absolute;
-        display: none;
         top: 0;
         left: 0;
-        width: 100%;
         height: 100%;
+        width: 100%;
+        .slick-list,
+        .slick-track,
+        .slick-slide > div,
+        img {
+          height: 100%;
+        }
+      }
+      .btn {
+        position: absolute;
+        display: flex;
+        align-items: center;
+        top: 0;
+        bottom: 0;
+        width: 20%;
+        justify-content: center;
+        .icon {
+          color: #fff;
+          display: none;
+        }
+      }
+      .indicator {
+        position: absolute;
+        bottom: 10px;
+        padding: 0 20%;
+        display: flex;
+        justify-content: center;
+        right: 0;
+        left: 0;
+        .dot {
+          flex-shrink: 0;
+          display: inline-block;
+          padding: 3px;
+          background-clip: content-box;
+          width: 14px;
+          aspect-ratio: 1;
+          background-color: #f5f4f4;
+          border-radius: 100%;
+          transition: 200ms;
+          &.active {
+            background-color: #fff;
+            transform: scale(1.05);
+          }
+        }
+        &.scale {
+          .dot {
+            &.prev-1 {
+              transform: scale(0.8);
+            }
+            &.prev-2 {
+              transform: scale(0.7);
+            }
+            &.prev-3 {
+              transform: scale(0.6);
+            }
+            &.prev-4 {
+              transform: scale(0.5);
+            }
+            &.prev-5 {
+              transform: scale(0.4);
+            }
+            &.prev-6 {
+              transform: scale(0.3);
+            }
+            &.active {
+              & + .dot {
+                transform: scale(0.8);
+              }
+              & + .dot + .dot {
+                transform: scale(0.7);
+              }
+              & + .dot + .dot + .dot {
+                transform: scale(0.6);
+              }
+              & + .dot + .dot + .dot + .dot {
+                transform: scale(0.5);
+              }
+              & + .dot + .dot + .dot + .dot + .dot {
+                transform: scale(0.4);
+              }
+              & + .dot + .dot + .dot + .dot + .dot + .dot {
+                transform: scale(0.3);
+              }
+            }
+          }
+        }
+      }
+      .next {
+        right: 0;
+      }
+      .prev {
+        left: 0;
       }
       .new {
         position: absolute;

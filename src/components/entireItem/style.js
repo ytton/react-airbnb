@@ -6,18 +6,33 @@ const EntireItemWrapper = styled.div`
     flex-shrink: 0;
     padding: 8px;
     .cover {
-      min-height: 193px;
       position: relative;
-      background-color: red;
       border-radius: 3px;
       overflow: hidden;
-      padding-top: 68%;
+      aspect-ratio: 353/234;
+      cursor: pointer;
+      &:hover {
+        .btn {
+          .icon {
+            display: inline-block;
+          }
+          &.next {
+            background: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.6));
+          }
+          &.prev {
+            background: linear-gradient(to left, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.6));
+          }
+        }
+      }
       .slider {
         position: absolute;
         top: 0;
         left: 0;
         height: 100%;
         width: 100%;
+        .slick-list,
+        .slick-track,
+        .slick-slide > div,
         img {
           height: 100%;
         }
@@ -44,6 +59,78 @@ const EntireItemWrapper = styled.div`
         align-items: center;
         top: 0;
         bottom: 0;
+        width: 20%;
+        justify-content: center;
+        .icon {
+          color: #fff;
+          display: none;
+        }
+      }
+      .indicator {
+        position: absolute;
+        bottom: 10px;
+        padding: 0 20%;
+        display: flex;
+        justify-content: center;
+        right: 0;
+        left: 0;
+        .dot {
+          flex-shrink: 0;
+          display: inline-block;
+          padding: 3px;
+          background-clip: content-box;
+          width: 14px;
+          aspect-ratio: 1;
+          background-color: #f5f4f4;
+          border-radius: 100%;
+          transition: 200ms;
+          &.active {
+            background-color: #fff;
+            transform: scale(1.05);
+          }
+        }
+        &.scale {
+          .dot {
+            &.prev-1 {
+              transform: scale(0.8);
+            }
+            &.prev-2 {
+              transform: scale(0.7);
+            }
+            &.prev-3 {
+              transform: scale(0.6);
+            }
+            &.prev-4 {
+              transform: scale(0.5);
+            }
+            &.prev-5 {
+              transform: scale(0.4);
+            }
+            &.prev-6 {
+              transform: scale(0.3);
+            }
+            &.active {
+              & + .dot {
+                transform: scale(0.8);
+              }
+              & + .dot + .dot {
+                transform: scale(0.7);
+              }
+              & + .dot + .dot + .dot {
+                transform: scale(0.6);
+              }
+              & + .dot + .dot + .dot + .dot {
+                transform: scale(0.5);
+              }
+              & + .dot + .dot + .dot + .dot + .dot {
+                transform: scale(0.4);
+              }
+              & + .dot + .dot + .dot + .dot + .dot + .dot {
+                transform: scale(0.3);
+              }
+            }
+          }
+        }
       }
       .next {
         right: 0;
