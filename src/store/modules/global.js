@@ -3,18 +3,24 @@ import { createSlice } from '@reduxjs/toolkit';
 const slice = createSlice({
   name: 'global',
   initialState: {
-    showFooter: true,
-    fixedHeader: false
+    footerConfig: {
+      isShow: true
+    },
+    headerConfig: {
+      isFix: false,
+      isAlpha: false,
+      isSearch: false
+    }
   },
   reducers: {
-    changeShowFooterAction(state, action) {
-      state.showFooter = action.payload;
+    changeHeaderConfigAction(state, action) {
+      state.headerConfig = { ...state.headerConfig, ...action.payload };
     },
-    changeFixedHeaderAction(state, action) {
-      state.fixedHeader = action.payload;
+    changeFooterConfigAction(state, action) {
+      state.footerConfig = { ...state.footerConfig, ...action.payload };
     }
   }
 });
 
 export default slice.reducer;
-export const { changeShowFooterAction, changeFixedHeaderAction } = slice.actions;
+export const { changeFooterConfigAction, changeHeaderConfigAction } = slice.actions;

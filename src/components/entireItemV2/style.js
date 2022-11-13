@@ -61,7 +61,8 @@ const EntireItemV2Wrapper = styled.div`
       .indicator {
         position: absolute;
         bottom: 10px;
-        padding: 0 20%;
+        width: 70px;
+        margin: 0 auto;
         display: flex;
         justify-content: center;
         right: 0;

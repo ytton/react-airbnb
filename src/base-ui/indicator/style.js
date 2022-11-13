@@ -4,7 +4,7 @@ const IndicatorWrapper = styled.div`
   & {
     position: relative;
     overflow: hidden;
-    width: ${props => props.containerWidth};
+    width: 100%;
     .items {
       display: flex;
       flex-wrap: nowrap;

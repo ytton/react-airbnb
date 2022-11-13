@@ -1,13 +1,19 @@
-import React, { memo } from 'react';
+import React, { memo, useEffect } from 'react';
 import { isEmpty } from '@/utils';
 import HomeBanner from './components/homeBanner';
 import HomeSection from './components/homeSection';
 import { useInitData } from './hooks';
 import { HomeWrapper } from './style';
 import LongForSection from './components/longForSection';
+import { useDispatch } from 'react-redux';
+import { changeHeaderConfigAction } from '../../store/modules/global';
 
 const Home = memo(() => {
   const { goodPriceRoomInfo, hotRoomInfo, discountRoomInfo, longForCityInfo, highScoreRoomInfo } = useInitData();
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(changeHeaderConfigAction({ isFix: true, isAlpha: true }));
+  }, [dispatch]);
   return (
     <HomeWrapper>
       <HomeBanner />

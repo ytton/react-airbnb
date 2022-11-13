@@ -5,7 +5,7 @@ const EntireFilterWrapper = styled.div`
     height: 48px;
     .content {
       display: flex;
-      z-index: 901;
+      z-index: 1;
       left: 0;
       right: 0;
       background-color: #fff;

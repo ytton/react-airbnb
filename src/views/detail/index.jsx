@@ -1,9 +1,25 @@
-import React, { memo } from 'react'
+import React, { memo, useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { useParams } from 'react-router-dom';
+import { getDetailInfoAction } from '../../store/modules/detail';
+import { changeHeaderConfigAction } from '../../store/modules/global';
+import DetailImagesSection from './components/detailImagesSection';
+import DetailWrapper from './style';
 
 const Detail = memo(() => {
-  return (
-    <div>Detail</div>
-  )
-})
+  const params = useParams();
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(changeHeaderConfigAction({ isFix: false, isAlpha: false }));
+    dispatch(getDetailInfoAction(params.id));
+  }, [dispatch, params.id]);
 
-export default Detail
+  return (
+    <DetailWrapper>
+      <DetailImagesSection />
+      <div className="info-section"></div>
+    </DetailWrapper>
+  );
+});
+
+export default Detail;

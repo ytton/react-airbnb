@@ -7,7 +7,7 @@ export const StyleWrapper = styled.div`
     align-items: center;
     .logo {
       cursor: pointer;
-      color: ${props => props.theme.color.primaryColor};
+      color: ${({ theme }) => (theme.isAlpha ? '#fff' : theme.color.primaryColor)};
     }
   }
 `;
